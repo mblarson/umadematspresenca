@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Culto Umademats de Agosto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #062C3F;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 60px;
+        }
+        /* Background animado */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+            margin-bottom: 20px;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .logo img {
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .logo i {
+            font-size: 60px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -5px rgba(255, 126, 95, 0.5);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(255, 126, 95, 0.6);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        .password-container {
+            margin-top: 20px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 18px 50px 18px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #ff7e5f;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(255, 126, 95, 0.2);
+        }
+        .toggle-password {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .toggle-password:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .screen.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+        .loading.show {
+            display: block;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #ff7e5f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .credit {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            text-align: center;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+        /* Tela de Boas-vindas */
+        .welcome-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #062C3F 0%, #0a3d5a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        .welcome-screen.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .welcome-content {
+            text-align: center;
+            animation: welcomeAnimation 2s ease-out;
+            padding: 0 20px;
+            max-width: 90%;
+        }
+        @keyframes welcomeAnimation {
+            0% {
+                transform: scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        .welcome-title {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 50%, #ff7e5f 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: gradientShift 3s ease-in-out infinite;
+            line-height: 1.2;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .welcome-subtitle {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+        .welcome-icon {
+            width: auto;
+            height: auto;
+            margin-bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            border-radius: 50%;
+            object-fit: contain;
+            background: transparent;
+            padding: 0;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 126, 95, 0.5);
+            border-radius: 50%;
+            animation: floatParticle 6s linear infinite;
+        }
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .welcome-button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 126, 95, 0.4);
+            animation: slideUp 1s ease-out 1s both;
+        }
+        .welcome-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 126, 95, 0.6);
+        }
+        /* Tela de Bloqueio por Localização */
+        .location-blocked-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #062C3F 0%, #0a3d5a 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        .location-blocked-screen.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .blocked-content {
+            text-align: center;
+            max-width: 400px;
+            padding: 30px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        .blocked-content i {
+            font-size: 64px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        .blocked-content h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .blocked-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .retry-button {
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.4);
+        }
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 126, 95, 0.6);
+        }
+        .retry-button i {
+            font-size: 16px;
+            margin-right: 8px;
+            color: white;
+        }
+        /* Responsividade para diferentes tamanhos de tela */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+                width: 95%;
+                margin: 0 auto;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            .btn-primary {
+                padding: 16px;
+                font-size: 16px;
+            }
+            .logo img {
+                width: 100px;
+            }
+            .logo i {
+                font-size: 50px;
+            }
+            .credit {
+                font-size: 11px;
+                bottom: 15px;
+            }
+            .welcome-title {
+                font-size: 28px; /* Diminuído de 36px para 28px */
+                margin-bottom: 15px;
+                line-height: 1.3;
+            }
+            .welcome-subtitle {
+                font-size: 18px; /* Diminuído de 20px para 18px */
+                margin-bottom: 30px;
+            }
+            .welcome-icon {
+                width: auto;
+                height: auto;
+            }
+            .blocked-content h2 {
+                font-size: 24px;
+            }
+            .blocked-content p {
+                font-size: 16px;
+            }
+            .welcome-content {
+                padding: 0 15px;
+            }
+        }
+        @media (max-height: 600px) {
+            .container {
+                padding: 20px 15px;
+                margin: 10px 0;
+                margin: 10px auto;
+            }
+            h1 {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            .btn-primary {
+                padding: 14px;
+                font-size: 15px;
+            }
+            .credit {
+                bottom: 10px;
+            }
+            .welcome-title {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+            .welcome-subtitle {
+                font-size: 18px;
+                margin-bottom: 30px;
+            }
+            .welcome-icon {
+                width: auto;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Tela de Bloqueio por Localização -->
+    <div class="location-blocked-screen" id="locationBlockedScreen">
+        <div class="blocked-content">
+            <i class="fas fa-map-marker-alt"></i>
+            <h2>Acesso Restrito</h2>
+            <p>Este sistema só pode ser acessado de uma localização específica.</p>
+            <p>Verifique sua conexão e tente novamente.</p>
+            <button class="retry-button" onclick="checkLocationAndProceed()">
+                <i class="fas fa-sync-alt"></i> Tentar Novamente
+            </button>
+        </div>
+    </div>
+    
+    <!-- Tela de Boas-vindas -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="particles" id="particles"></div>
+        <div class="welcome-content">
+            <img src="https://raw.githubusercontent.com/mblarson/sistemapresenca/main/logoumademats.png" alt="GitHub Logo" class="welcome-icon">
+            <h2 class="welcome-title">Parabéns! Você acertou a senha!</h2>
+            <p class="welcome-subtitle">Clique em 'Continuar' para prosseguir!</p>
+            <!-- 
+                ================================================
+                ABAIXO ESTÁ O BOTÃO QUE REDIRECIONA PARA O FORMS
+                ================================================
+                
+                PARA ALTERAR O LINK DO GOOGLE FORMS:
+                1. Localize a função redirectToForms() no final do código JavaScript
+                2. Substitua o link dentro de window.open() pelo seu link do Google Forms
+            -->
+            <button class="welcome-button" onclick="redirectToForms()">
+                Continuar <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Tela 1: Boas-vindas -->
+    <div class="screen" id="screen1">
+        <div class="container">
+            <div class="logo">
+                <!-- Logo do projeto - Substitua pelo seu link do GitHub -->
+                <img src="https://raw.githubusercontent.com/mblarson/sistemapresenca/main/logoumademats.png" alt="Umademats Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <i class="fas fa-church" style="display: none;"></i>
+            </div>
+            <h1>Bem-vindos a culto Umademats de Agosto</h1>
+            <button class="btn-primary" onclick="goToPasswordScreen()">
+                Estou no culto 😎
+            </button>
+        </div>
+        <div class="credit">Desenvolvido por Umademats</div>
+    </div>
+    
+    <!-- Tela 2: Senha -->
+    <div class="screen" id="screen2">
+        <div class="container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/mblarson/sistemapresenca/main/logoumademats.pngg" alt="Umademats Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <i class="fas fa-lock" style="display: none;"></i>
+            </div>
+            <h1>Insira a senha informada no culto</h1>
+            <div class="password-container">
+                <div class="input-group">
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        class="input-field" 
+                        placeholder="Digite a senha"
+                        autocomplete="off"
+                    >
+                    <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                </div>
+                <button class="btn-primary" onclick="checkPassword()">
+                    Entrar
+                </button>
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i> Senha incorreta. Tente novamente!
+                </div>
+            </div>
+        </div>
+        <div class="credit">Desenvolvido por Umademats</div>
+    </div>
+    
+    <script>
+        // Configurações de localização
+        const LOCATION_SETTINGS = {
+            enabled: true, // Ativar/desativar verificação de localização
+            allowedLocation: {
+                lat: -20.463812067065987,  // Latitude do local permitido (exemplo: São Paulo)
+                lng: -54.58788538098409,  // Longitude do local permitido
+                radius: 200       // Raio em metros (200m = aproximadamente um quarteirão)
+            },
+            messages: {
+                blocked: "Acesso permitido apenas durante o culto na igreja",
+                permissionDenied: "Por favor, permita o acesso à sua localização",
+                unsupported: "Seu navegador não suporta geolocalização"
+            }
+        };
+        
+        // Senha do sistema - ALTERE AQUI PARA MUDAR A SENHA
+        const CORRECT_PASSWORD = "umadeagosto"; // <-- SENHA ATUAL
+        
+        // Variável para controlar o estado da verificação de localização
+        let locationCheckCompleted = false;
+        
+        // Função para calcular distância entre dois pontos (fórmula de Haversine)
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Raio da Terra em km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c * 1000; // Retorna distância em metros
+        }
+        
+        // Função para verificar localização do usuário
+        async function checkUserLocation() {
+            if (!LOCATION_SETTINGS.enabled) return true;
+            
+            return new Promise((resolve) => {
+                if (!navigator.geolocation) {
+                    alert(LOCATION_SETTINGS.messages.unsupported);
+                    resolve(false);
+                    return;
+                }
+                
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const distance = calculateDistance(
+                            position.coords.latitude,
+                            position.coords.longitude,
+                            LOCATION_SETTINGS.allowedLocation.lat,
+                            LOCATION_SETTINGS.allowedLocation.lng
+                        );
+                        
+                        const isAllowed = distance <= LOCATION_SETTINGS.allowedLocation.radius;
+                        
+                        if (!isAllowed) {
+                            console.log(`Distância: ${distance.toFixed(2)}m (permitido: ${LOCATION_SETTINGS.allowedLocation.radius}m)`);
+                        }
+                        
+                        resolve(isAllowed);
+                    },
+                    (error) => {
+                        alert(LOCATION_SETTINGS.messages.permissionDenied);
+                        resolve(false);
+                    }
+                );
+            });
+        }
+        
+        // Função para verificar localização e prosseguir
+        async function checkLocationAndProceed() {
+            const loading = document.getElementById('loading');
+            const locationBlockedScreen = document.getElementById('locationBlockedScreen');
+            
+            loading.classList.add('show');
+            
+            const isLocationAllowed = await checkUserLocation();
+            
+            loading.classList.remove('show');
+            
+            if (isLocationAllowed) {
+                locationBlockedScreen.classList.remove('show');
+                // Se a localização for permitida, mostrar a tela inicial
+                document.getElementById('screen1').classList.add('active');
+                locationCheckCompleted = true;
+            } else {
+                locationBlockedScreen.classList.add('show');
+            }
+        }
+        
+        // Evento de carregamento da página
+        window.addEventListener('DOMContentLoaded', async () => {
+            const loading = document.getElementById('loading');
+            loading.classList.add('show');
+            
+            try {
+                // Verificar localização antes de mostrar qualquer tela
+                const isLocationAllowed = await checkUserLocation();
+                
+                if (isLocationAllowed) {
+                    // Se a localização for permitida, mostrar a tela inicial
+                    document.getElementById('screen1').classList.add('active');
+                    locationCheckCompleted = true;
+                } else {
+                    // Se a localização não for permitida, mostrar tela de bloqueio
+                    document.getElementById('locationBlockedScreen').classList.add('show');
+                }
+            } catch (error) {
+                console.error('Erro na verificação de localização:', error);
+                // Em caso de erro, mostrar a tela inicial como fallback
+                document.getElementById('screen1').classList.add('active');
+                locationCheckCompleted = true;
+            } finally {
+                loading.classList.remove('show');
+            }
+        });
+        
+        // Criar partículas para a tela de boas-vindas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Função para ir para a tela de senha
+        function goToPasswordScreen() {
+            const loading = document.getElementById('loading');
+            const screen1 = document.getElementById('screen1');
+            const screen2 = document.getElementById('screen2');
+            loading.classList.add('show');
+            setTimeout(() => {
+                screen1.classList.remove('active');
+                screen2.classList.add('active');
+                loading.classList.remove('show');
+                
+                setTimeout(() => {
+                    document.getElementById('passwordInput').focus();
+                }, 300);
+            }, 500);
+        }
+        
+        // Função para mostrar/ocultar senha
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const toggleIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+        
+        // Função para verificar a senha
+        function checkPassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const enteredPassword = passwordInput.value.trim();
+            errorMessage.classList.remove('show');
+            if (enteredPassword === '') {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Por favor, digite a senha!';
+                errorMessage.classList.add('show');
+                return;
+            }
+            if (enteredPassword.toLowerCase() === CORRECT_PASSWORD.toLowerCase()) {
+                const container = document.querySelector('#screen2 .container');
+                container.style.transform = 'scale(0.95)';
+                container.style.opacity = '0.7';
+                
+                setTimeout(() => {
+                    showWelcomeScreen();
+                }, 300);
+            } else {
+                passwordInput.style.animation = 'shake 0.5s';
+                errorMessage.classList.add('show');
+                
+                setTimeout(() => {
+                    passwordInput.value = '';
+                    passwordInput.style.animation = '';
+                }, 500);
+            }
+        }
+        
+        // Função para mostrar a tela de boas-vindas
+        function showWelcomeScreen() {
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            const screen2 = document.getElementById('screen2');
+            
+            // Esconde a tela de senha
+            screen2.classList.remove('active');
+            
+            // Mostra a tela de boas-vindas
+            welcomeScreen.classList.add('show');
+            
+            // Limpa o campo de senha
+            document.getElementById('passwordInput').value = '';
+            
+            // Cria partículas se ainda não foram criadas
+            if (document.getElementById('particles').children.length === 0) {
+                createParticles();
+            }
+        }
+        
+        // ================================================
+        // FUNÇÃO DE REDIRECIONAMENTO PARA O GOOGLE FORMS
+        // ================================================
+        // 
+        // PARA ALTERAR O LINK DO GOOGLE FORMS:
+        // Substitua o link abaixo pelo seu link do Google Forms
+        // 
+        function redirectToForms() {
+            // ABAIXO ESTÁ O LINK DO GOOGLE FORMS - SUBSTITUA PELO SEU
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSd8YouvdaXPO3AM_T_tI6FEqPfWgh3lLdjkODG25dgkrB9Heg/viewform?usp=header', '_blank');
+        }
+        
+        // Função para voltar à tela inicial
+        function resetToFirstScreen() {
+            const screen1 = document.getElementById('screen1');
+            const screen2 = document.getElementById('screen2');
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            screen2.classList.remove('active');
+            screen1.classList.add('active');
+            passwordInput.value = '';
+            errorMessage.classList.remove('show');
+            
+            // Reseta a animação do container
+            const container = document.querySelector('#screen2 .container');
+            container.style.transform = '';
+            container.style.opacity = '';
+        }
+        
+        // Adiciona animação de shake para erro
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Permite enviar com Enter
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // Previne zoom em dispositivos móveis ao focar no input
+        document.addEventListener('touchstart', function(e) {
+            if (e.target.tagName === 'INPUT') {
+                e.target.style.fontSize = '16px';
+            }
+        });
+    </script>
+</body>
+</html>
