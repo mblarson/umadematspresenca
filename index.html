@@ -502,6 +502,18 @@
                 height: auto;
             }
         }
+        
+        /* Animação para notificação de atualização */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
     </style>
 </head>
 <body>
@@ -595,8 +607,8 @@
         const LOCATION_SETTINGS = {
             enabled: true, // Ativar/desativar verificação de localização
             allowedLocation: {
-                lat: -20.465002767953383,  // Latitude do local permitido (exemplo: São Paulo)
-                lng: -54.62542716218563,  // Longitude do local permitido
+                lat: -20.463823726431173,  // Latitude do local permitido (exemplo: São Paulo) //LOC TECSECH -20.463823726431173, -54.587921660347696 // LOC MATRIZ -20.465002767953383 -54.62542716218563
+                lng: -54.587921660347696,  // Longitude do local permitido
                 radius: 200       // Raio em metros (200m = aproximadamente um quarteirão)
             },
             messages: {
@@ -862,8 +874,64 @@
                 e.target.style.fontSize = '16px';
             }
         });
+        
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registrado com sucesso:', registration.scope);
+                        
+                        // Verificar atualizações
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.log('Falha ao registrar ServiceWorker:', error);
+                    });
+            });
+        }
+        
+        // Função para mostrar notificação de atualização
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 30px;
+                box-shadow: 0 10px 30px rgba(255, 126, 95, 0.4);
+                z-index: 10000;
+                font-weight: 600;
+                cursor: pointer;
+                animation: slideUp 0.5s ease-out;
+            `;
+            notification.innerHTML = `
+                <i class="fas fa-sync-alt"></i> Nova versão disponível! Clique para atualizar
+            `;
+            
+            notification.addEventListener('click', () => {
+                navigator.serviceWorker.getRegistration().then(registration => {
+                    if (registration) {
+                        registration.waiting.postMessage({ action: 'skipWaiting' });
+                    }
+                });
+                window.location.reload();
+            });
+            
+            document.body.appendChild(notification);
+        }
     </script>
 </body>
-
 </html>
-
