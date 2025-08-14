@@ -594,11 +594,19 @@
         // Configurações de localização
         const LOCATION_SETTINGS = {
             enabled: true, // Ativar/desativar verificação de localização
-            allowedLocation: {
-                lat: -20.465002767953383,  // Latitude do local permitido (exemplo: São Paulo)
-                lng: -54.62542716218563,  // Longitude do local permitido
-                radius: 200       // Raio em metros (200m = aproximadamente um quarteirão)
+            allowedLocation:[ {
+                lat: -20.464988852472818,  // Localização Igreja
+                lng: -54.62541639290674,  // 
+                radius: 200,       // Raio em metros (200m = aproximadamente um quarteirão)
+                name: Igreja    
             },
+            {
+            lat: -20.463796361173024, // Localização NDS (Trabalho Mathews)
+            lng: -54.58786526440671,
+            radius: 200,
+            name: "Empresa Mathews"
+        }
+            ]
             messages: {
                 blocked: "Acesso permitido apenas durante o culto na igreja",
                 permissionDenied: "Por favor, permita o acesso à sua localização",
@@ -866,3 +874,4 @@
 </body>
 
 </html>
+
